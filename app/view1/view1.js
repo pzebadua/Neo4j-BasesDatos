@@ -18,7 +18,8 @@ angular.module('myApp.view1', ['ngRoute','myApp.service1'])
     $scope.recepies = [
         {
             id: '',
-            ingredients: []
+            ingredients: [{}],
+            tools: []
         }
     ]
     
@@ -31,6 +32,14 @@ angular.module('myApp.view1', ['ngRoute','myApp.service1'])
                     RecepieService.getIngredients(recepie.id).then (
                         function(ingr){
                              recepie.ingredients =  ingr.data;
+
+                        }
+                        
+                    );
+                    
+                    RecepieService.getTools(recepie.id).then (
+                        function(too){
+                             recepie.tools =  too.data;
 
                         }
                         
