@@ -1,0 +1,12 @@
+import conf
+
+def get_vendido(x):
+	x=str(x)
+	results=graph.cypher.execute("match (P:Product)-[r:ESTA]-(F:Fechas) where r.estado=\"vendido\" and P.id="+x+"  return F")
+	#print(results)
+	sold=[]
+	for v in results:
+		#print(v[0].properties)
+		sold.append(v[0].properties)
+	#print(json.dumps(sold))
+	return json.dumps(sold)
