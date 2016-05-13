@@ -23,15 +23,16 @@ angular.module('myApp.view1', ['ngRoute','myApp.service1'])
         }
     ]
     
-    var plop = {"statements": [{"statement":"MATCH (n:Receta) RETURN n", "parameters":{"resultDataContents":["row"]}}]};
+    var plop = {"statements": [{"statement":"MATCH (n:Receta) RETURN n", "parameters":{}}]};
 	 
     
         RecepieService.postRecepie(plop).then (
             function(resp){
-					alert("entro");
-                $scope.recepies = resp.data;
-					 console.log($scope.recepies);
-                angular.forEach($scope.recepies, function(recepie, key) {
+					//alert("entro");
+                $scope.todo = resp.data;
+                $scope.recepies = resp.data.results[0].data;
+                console.log($scope.recepies[1].row[0]);
+                /*angular.forEach($scope.recepies, function(recepie, key) {
                     //console.log("receta:" + recepie.name);
                     
                     RecepieService.getIngredients(recepie.id).then (
@@ -51,7 +52,7 @@ angular.module('myApp.view1', ['ngRoute','myApp.service1'])
                     );
                      
                     
-                })
+                })*/
             }
         );
     
