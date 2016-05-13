@@ -5,18 +5,18 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
+        <th>Receta</th>
+        <th>Herramientas</th>
+        <th>Producir?</th>
       </tr>
     </thead>
     <tbody> <!--{{recepie.class}}-->
       <tr ng-repeat="recepie in recepies" class="info">
         <td>{{recepie.row[0].name}} <br/> Ingredientes: <br/><span ng-repeat="ingredient in recepie.ingredients"><span style="padding-left:10px">{{ingredient.row[0].name}}<span> <br/></span></td>
           
-			<td>Herramienta: XXX  Tiempo: X  <br/></td>
+			<td>Herramienta <span ng-repeat="tool in recepie.tools">{{tool.row[0].name}} <br/></span></td>
 			
-        <td><button type="button" class="btn btn-default">Crear</button></td>
+        <td><button type="button" class="btn btn-default" ng-click=crear(recepie.row[0].id)>Crear</button></td>
       </tr>
      
     </tbody>

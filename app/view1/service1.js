@@ -32,6 +32,22 @@ angular.module('myApp.service1', ['ngRoute'])
 						'Accepts': 'application/json; charset=UTF-8;'
 					}
             });
+        },
+        
+        postTools: function(query){
+            return $http.post("http://neo4j:1234@localhost:7472/db/data/transaction/commit", query,{
+				    headers: {
+						'Accepts': 'application/json; charset=UTF-8;'
+					}
+            });
+        },
+			
+		  postCreate: function(query){
+            return $http.post("http://neo4j:1234@localhost:7472/db/data/transaction/commit", query,{
+				    headers: {
+						'Accepts': 'application/json; charset=UTF-8;'
+					}
+            });
         }
         
     }
