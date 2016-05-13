@@ -19,7 +19,7 @@ angular.module('myApp.service1', ['ngRoute'])
         },
 			
 			postRecepie: function(query){
-				return $http.post("http://neo4j:1234@localhost:7474/db/data/transaction/commit", query,{
+				return $http.post("http://neo4j:1234@localhost:7472/db/data/transaction/commit", query,{
 					headers: {
 						'Accepts': 'application/json; charset=UTF-8;'
 					}
