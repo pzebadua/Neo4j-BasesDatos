@@ -8,20 +8,21 @@ import http
 from http.server import BaseHTTPRequestHandler, HTTPServer
 graph = Graph("http://neo4j:1234@localhost:7474/db/data/")
 
-def get_herr(x): #parametro es el ID de la receta
+def get_vendido(x):
 	x=str(x)
-	results=graph.cypher.execute("match (R:Receta)-[:Usa]-(I:Herraminetas)where R.id="+x+" return I")
+	results=graph.cypher.execute("match (P:Product)-[r:ESTA]-(F:Fechas) where r.estado=\"vendido\" and P.id="+x+"  return F")
 	#print(results)
-	ingredientes=[]
-	for i in results:
-		ingredientes.append(i[0].properties)
-	#print(json.dumps(ingredientes))
-	return json.dumps(ingredientes)
+	sold=[]
+	for v in results:
+		#print(v[0].properties)
+		sold.append(v[0].properties)
+	#print(json.dumps(sold))
+	return json.dumps(sold)
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_GET(self):
 		#print(self.path[-1:])
-		r=get_herr(self.path[-1:])
+		r=get_vendido(self.path[-1:])
 		print(r)
 		self.send_response(200)
 		self.send_header('Content-type','text/json')
