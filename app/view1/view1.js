@@ -25,10 +25,14 @@ angular.module('myApp.view1', ['ngRoute','myApp.service1'])
 		})
 	}
     $scope.crear = function(idr){
-		 //alert(idr);
-		 var cre = {"statements": [{"statement":"MATCH p=(R:Receta)-[r:NECESITA]-(P:Product)-[r2:ESTA]-(F:Fecha) where R.id="+idr+"set r2.estado='vendido' RETURN p", "parameters":{}}]};
-		 RecepieService.postCreate(cre).success (
-			alert("vendido"));
+		 alert(idr);
+		 var cre = {"statements": [{"statement":"MATCH (R:Receta)-[r:NECESITA]-(P:Product)-[r2:ESTA]-(F:Fechas) where R.id="+idr+" set r2.estado='vendido' RETURN *", "parameters":{}}]};
+		 RecepieService.postCreate(cre).then(
+			//alert("vendido"));
+         function(resp){
+            console.log(resp.data);
+         }
+        )
 	}
     $scope.recepies = [
         {

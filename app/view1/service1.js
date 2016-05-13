@@ -3,6 +3,8 @@
 angular.module('myApp.service1', ['ngRoute'])
 
 .service('RecepieService', function($q,$http) {
+
+    var baseurl = "http://neo4j:1234@localhost:7474/db/data/transaction/commit";
     
     return {
         getRecepie: function() {
@@ -19,7 +21,7 @@ angular.module('myApp.service1', ['ngRoute'])
         },
 			
         postRecepie: function(query){
-            return $http.post("http://neo4j:1234@localhost:7472/db/data/transaction/commit", query,{
+            return $http.post(baseurl, query,{
 				    headers: {
 						'Accepts': 'application/json; charset=UTF-8;'
 					}
@@ -27,7 +29,7 @@ angular.module('myApp.service1', ['ngRoute'])
         },
         
         postIngredients: function(query){
-            return $http.post("http://neo4j:1234@localhost:7472/db/data/transaction/commit", query,{
+            return $http.post(baseurl, query,{
 				    headers: {
 						'Accepts': 'application/json; charset=UTF-8;'
 					}
@@ -35,7 +37,7 @@ angular.module('myApp.service1', ['ngRoute'])
         },
         
         postTools: function(query){
-            return $http.post("http://neo4j:1234@localhost:7472/db/data/transaction/commit", query,{
+            return $http.post(baseurl, query,{
 				    headers: {
 						'Accepts': 'application/json; charset=UTF-8;'
 					}
@@ -43,7 +45,7 @@ angular.module('myApp.service1', ['ngRoute'])
         },
 			
 		  postCreate: function(query){
-            return $http.post("http://neo4j:1234@localhost:7472/db/data/transaction/commit", query,{
+            return $http.post(baseurl, query,{
 				    headers: {
 						'Accepts': 'application/json; charset=UTF-8;'
 					}
