@@ -43,6 +43,13 @@ angular.module('myApp.service1', ['ngRoute'])
 					}
             });
         },
+        postAllIngredients: function(query){
+            return $http.post(baseurl,query,{
+                headers: {
+                    'Accepts': 'application/json; charset=UTF-8;'
+                }
+            })
+        },
 			
 		  postCreate: function(query){
             return $http.post(baseurl, query,{

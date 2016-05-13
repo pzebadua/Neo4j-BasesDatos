@@ -10,19 +10,24 @@ angular.module('myApp.view1', ['ngRoute','myApp.service1'])
 }])
 
 .controller('View1Ctrl', ['$scope','$http','RecepieService',function($scope, $http, RecepieService) {
-  $scope.ingredientesS = [
-    { name: 'Harina', id: 1 , value:false},
-    { name: 'Huevo', id: 1 , value:false},
-    { name: 'Platano', id: 1 , value:false},
-    { name: 'Cafe Molido', id: 1 , value:false},
-    { name: 'Leche', id: 2 , value:false},
-    { name: 'Azucar', id: 3 , value:false}
-  ];
-	$scope.crearRecetas = function(){
-		angular.forEach($scope.checkboxModel, function(ingre, key) {
-		console.log(inger.value1);
-				
-		})
+
+    var ings = {"statements": [{"statement":"MATCH (n:Product) RETURN n", "parameters":{}}]};
+
+    RecepieService.postAllIngredients(ings).then (
+                        function(ingo){
+                             $scope.ingredients =  ingo.data.results[0].data;
+                                console.log("IIIIII"+ingo.data.results[0].data);
+                            angular.forEach($scope.ingredients, function(ingp, key) {
+                                ingp.row[0].val = false;
+                            });
+                        }
+                        
+                    );
+
+	$scope.agregarIngredientes = function(){
+		angular.forEach($scope.ingredients, function(ingp, key) {
+                                ingp.row[0].val = true;
+         });
 	}
     $scope.crear = function(idr){
 		 alert(idr);
@@ -30,7 +35,7 @@ angular.module('myApp.view1', ['ngRoute','myApp.service1'])
 		 RecepieService.postCreate(cre).then(
 			//alert("vendido"));
          function(resp){
-            console.log(resp.data);
+            //console.log(resp.data);
          }
         )
 	}

@@ -20,11 +20,12 @@
      
     </tbody>
   </table>
-  <div ng-repeat="ingredientesS in ingrediet" >
-		<label>{{ingrediet.name}}</label>
-		<input type="checkbox" ng-model="ingrediet.value">
+  <div ng-repeat="ingredient in ingredients" >
+		<label>{{ingredient.row[0].name}}</label>
+
+		<input type="checkbox" ng-model="ingredient.row[0].value">
 
   </div>
-<button type="button" class="btn btn-default" ng-click=crearRecetas()>CrearReceta</button>
+<button type="button" class="btn btn-default" ng-click=agregarIngredientes()>CrearReceta</button>
 </div>
 
