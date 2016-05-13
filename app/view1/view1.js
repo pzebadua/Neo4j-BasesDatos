@@ -23,9 +23,14 @@ angular.module('myApp.view1', ['ngRoute','myApp.service1'])
         }
     ]
     
-        RecepieService.getRecepie().then (
+    var plop = {"statements": [{"statement":"MATCH (n:Receta) RETURN n", "parameters":{"resultDataContents":["row"]}}]};
+	 
+    
+        RecepieService.postRecepie(plop).then (
             function(resp){
+					alert("entro");
                 $scope.recepies = resp.data;
+					 console.log($scope.recepies);
                 angular.forEach($scope.recepies, function(recepie, key) {
                     //console.log("receta:" + recepie.name);
                     

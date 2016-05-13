@@ -32,7 +32,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.end_headers()
 		self.wfile.write(r.encode())
 
-httpd = socketserver.TCPServer(("localhost", 8083), MyHandler)
+httpd = socketserver.TCPServer(("localhost", 8087), MyHandler)
 httpd.serve_forever()
 """
 get_recetas()
