@@ -24,21 +24,22 @@ angular.module('myApp.view1', ['ngRoute','myApp.service1'])
     ]
     
     var plop = {"statements": [{"statement":"MATCH (n:Receta) RETURN n", "parameters":{}}]};
-	 
+    
+
     
         RecepieService.postRecepie(plop).then (
             function(resp){
 					//alert("entro");
                 $scope.todo = resp.data;
                 $scope.recepies = resp.data.results[0].data;
-                console.log($scope.recepies[1].row[0]);
-                /*angular.forEach($scope.recepies, function(recepie, key) {
+                //console.log($scope.recepies[1].row[0]);
+                angular.forEach($scope.recepies, function(recepie, key) {
                     //console.log("receta:" + recepie.name);
-                    
-                    RecepieService.getIngredients(recepie.id).then (
+var ing = {"statements": [{"statement":"match (R:Receta)-[:NECESITA]-(I:Product)where R.id="+recepie.id+" return I", "parameters":{}}]};
+                    RecepieService.postIngredients(ing).then (
                         function(ingr){
                              recepie.ingredients =  ingr.data;
-
+                            console.log(recepie.ingredients);
                         }
                         
                     );
@@ -52,7 +53,7 @@ angular.module('myApp.view1', ['ngRoute','myApp.service1'])
                     );
                      
                     
-                })*/
+                })
             }
         );
     

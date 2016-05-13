@@ -18,13 +18,21 @@ angular.module('myApp.service1', ['ngRoute'])
             return $http.get('http://ubiquitous.csf.itesm.mx/~pddm-1018302/content/parcial2/examen/Cars/backend/servicio.insert.php?id=' + idTool);
         },
 			
-			postRecepie: function(query){
-				return $http.post("http://neo4j:1234@localhost:7472/db/data/transaction/commit", query,{
-					headers: {
+        postRecepie: function(query){
+            return $http.post("http://neo4j:1234@localhost:7472/db/data/transaction/commit", query,{
+				    headers: {
 						'Accepts': 'application/json; charset=UTF-8;'
 					}
-				});
-			}
+            });
+        },
+        
+        postIngredients: function(query){
+            return $http.post("http://neo4j:1234@localhost:7472/db/data/transaction/commit", query,{
+				    headers: {
+						'Accepts': 'application/json; charset=UTF-8;'
+					}
+            });
+        }
         
     }
 });
