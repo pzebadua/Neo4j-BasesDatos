@@ -12,10 +12,9 @@
     </thead>
     <tbody> <!--{{recepie.class}}-->
       <tr ng-repeat="recepie in recepies" class="info">
-        <td>{{recepie.row[0].name}}</td>
-			<td ng-repeat="ingredient in recepie.ingredients"> 
-				{{ingredient.row[0].name}}
-			</td>
+        <td class="tooltip">{{recepie.row[0].name}}</td>
+          <span class="tooltiptext" ><span ng-repeat="ingredient in recepie.ingredients">{{ingredient.row[0].name}}</span></span>
+			
         <td>john@example.com</td>
       </tr>
      
