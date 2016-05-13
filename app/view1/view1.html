@@ -21,4 +21,11 @@
      
     </tbody>
   </table>
+  <div ng-repeat="ingredientesS in ingrediet" >
+		<label>{{ingrediet.name}}</label>
+		<input type="checkbox" ng-model="ingrediet.value">
+
+  </div>
+<button type="button" class="btn btn-default" ng-click=crearRecetas()>CrearReceta</button>
+</div>
 

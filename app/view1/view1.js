@@ -10,16 +10,19 @@ angular.module('myApp.view1', ['ngRoute','myApp.service1'])
 }])
 
 .controller('View1Ctrl', ['$scope','$http','RecepieService',function($scope, $http, RecepieService) {
-  /*$scope.recepies = [
-    { name: 'Rav4', class: 'info', image: "./img/rav4.jpg", id: 1 },
-    { name: 'Impreza', class: 'success',image: "./img/subaru.jpg", id: 2 },
-    { name: 'Tsuru', class: 'danger',image: "./img/tsuru.jpg", id: 3 }
-  ];*/
-    $scope.crear = function(idr){
-		 //alert(idr);
-		 var cre = {"statements": [{"statement":"MATCH p=(R:Receta)-[r:NECESITA]-(P:Product)-[r2:ESTA]-(F:Fecha) where R.id="+idr+"set r2.estado='vendido' RETURN p", "parameters":{}}]};
-		 RecepieService.postCreate(cre).success (
-			alert("vendido"));
+  $scope.ingredientesS = [
+    { name: 'Harina', id: 1 , value:false},
+    { name: 'Huevo', id: 1 , value:false},
+    { name: 'Platano', id: 1 , value:false},
+    { name: 'Cafe Molido', id: 1 , value:false},
+    { name: 'Leche', id: 2 , value:false},
+    { name: 'Azucar', id: 3 , value:false}
+  ];
+	$scope.crearRecetas = function(){
+		angular.forEach($scope.checkboxModel, function(ingre, key) {
+		console.log(inger.value1);
+				
+		})
 	}
 
     $scope.recepies = [
