@@ -24,7 +24,7 @@ angular.module('myApp.view1', ['ngRoute','myApp.service1'])
     ]
     
     var plop = {"statements": [{"statement":"MATCH (n:Receta) RETURN n", "parameters":{}}]};
-    
+    var ing;
 
     
         RecepieService.postRecepie(plop).then (
@@ -35,10 +35,11 @@ angular.module('myApp.view1', ['ngRoute','myApp.service1'])
                 //console.log($scope.recepies[1].row[0]);
                 angular.forEach($scope.recepies, function(recepie, key) {
                     //console.log("receta:" + recepie.name);
-var ing = {"statements": [{"statement":"match (R:Receta)-[:NECESITA]-(I:Product)where R.id="+recepie.id+" return I", "parameters":{}}]};
+ing = {"statements": [{"statement":"match (R:Receta)-[:NECESITA]-(I:Product)where R.id="+recepie.row[0].id+" return I", "parameters":{}}]};
+//console.log(ing);
                     RecepieService.postIngredients(ing).then (
                         function(ingr){
-                             recepie.ingredients =  ingr.data;
+                             recepie.ingredients =  ingr.data.results[0].data;
                             console.log(recepie.ingredients);
                         }
                         
